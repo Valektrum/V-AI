@@ -4,8 +4,6 @@ const prefix = '-';
 const fs = require('fs');
 const cron = require('cron');
 
-//process.env.LEAGUE_API_PLATFORM_ID = 'na1'
-//process.env.LEAGUE_API_KEY = 'ENTER-KEY-HERE'
 const token = process.env.DISCORD_TOKEN;
 
 client.commands = new Discord.Collection();
@@ -138,7 +136,7 @@ client.on('message', message => {
     else {
         client.commands.get('Reactions').execute(message);
         client.commands.get('JojosReferences').execute(message);
-        //client.commands.get('League').execute(message);
+        client.commands.get('League').execute(message);
 
     }
 

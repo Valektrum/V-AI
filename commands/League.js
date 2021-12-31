@@ -90,8 +90,6 @@ module.exports = {
             msg.channel.send(response);
           });
 
-
-
       }
 
     }
