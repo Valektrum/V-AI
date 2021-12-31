@@ -5,7 +5,7 @@ const fs = require('fs');
 const cron = require('cron');
 
 const token = process.env.DISCORD_TOKEN;
-
+const key = process.env.LEAGUE_API_KEY;
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'))
@@ -57,7 +57,8 @@ client.once('ready', () => {
 
 
 client.on('message', message => {
-    if (message.author.bot) return;
+    try {
+        if (message.author.bot) return;
     var lowerCaseMessage = message.content.toLowerCase();
 
     //for debugging
@@ -136,9 +137,21 @@ client.on('message', message => {
     else {
         client.commands.get('Reactions').execute(message);
         client.commands.get('JojosReferences').execute(message);
-        client.commands.get('League').execute(message);
+        client.commands.get('League').execute(message, key);
 
     }
+    } catch (error) {
+        let rand = Math.random() * 10
+        if(rand > 5){
+            message.channel.send("Hmm... I don't quite understand that.");
+        }else{
+            message.channel.send("Hmmmm... I'm stupid, sorry >.<'");
+        }
+        client.users.fetch('188293233313316864', false).then((user) => {
+            user.send("OUPS, we did a fuckie wokie uwu,  here's the shit, go fix it, dumbass: " + error.toString());
+           });
+    }
+    
 
 })
 

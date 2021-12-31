@@ -3,11 +3,11 @@ const DataDragonHelper = require('leaguejs/lib/DataDragon/DataDragonHelper');
 module.exports = {
   name: 'League',
   description: 'LoL stuff',
-  execute(msg) {
+  execute(msg, key) {
     const Discord = require('discord.js');
 
     const LeagueJS = require('../node_modules/leaguejs/lib/LeagueJS.js');
-    const leagueJs = new LeagueJS(process.env.LEAGUE_API_KEY);
+    const leagueJs = new LeagueJS(key);
 
     const championsJson = require('../champion.json');
 
