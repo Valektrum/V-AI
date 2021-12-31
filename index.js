@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const prefix = '-';
 const fs = require('fs');
+const cron = require('cron');
 
 //process.env.LEAGUE_API_PLATFORM_ID = 'na1'
 //process.env.LEAGUE_API_KEY = 'ENTER-KEY-HERE'
@@ -16,10 +17,45 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
+
+
+let mainChannel = "";
+
 client.once('ready', () => {
     console.log('Hello human');
     client.user.setActivity("-help for my commands!");
+
+    //client.channels.fetch('542107482210828298') //test channel
+    client.channels.fetch('188295120276291584')
+    .then(function(channel){
+        mainChannel = channel;
+
+        let scheduledMessage = new cron.CronJob('00 00 12 * * *', () => {
+
+            let values = client.commands.get('QOTDget').get();
+                  
+            let questionnb;
+            if(values[1] <= 1){
+                questionnb = "question";
+            }else{
+                questionnb = "questions";
+            }
+            
+            const embed = new Discord.MessageEmbed()
+                  .setColor('#c73954')
+                  .setTitle("❓❔ Question of the Day ❔❓")
+                  .setDescription(values[0])
+                  .setFooter(values[1] + ' ' + questionnb + ' left');
+    
+            mainChannel.send(embed);
+        });
+          
+        scheduledMessage.start()
+    });
+
+    
 });
+
 
 
 client.on('message', message => {
@@ -48,7 +84,28 @@ client.on('message', message => {
         xav = "<@!188315934719475712>";
         message.channel.send(xav);
     }
+    else if (lowerCaseMessage.search("-qotdadd") != -1) {
+        client.commands.get('QOTDadd').add(message);
 
+    }
+    else if (lowerCaseMessage.search("-qotdpost") != -1) {
+        let values = client.commands.get('QOTDget').get();
+                  
+        let questionnb;
+        if(values[1] <= 1){
+            questionnb = "question";
+        }else{
+            questionnb = "questions";
+        }
+
+        const embed = new Discord.MessageEmbed()
+                  .setColor('#c73954')
+                  .setTitle("❓❔ Question of the Day ❔❓")
+                  .setDescription(values[0])
+                  .setFooter(values[1] + ' ' + questionnb + ' left');
+
+        mainChannel.send(embed);
+    }
     else if (lowerCaseMessage == "-coin") {
         client.commands.get('FlipCoin').execute(message);
 
@@ -81,7 +138,7 @@ client.on('message', message => {
     else {
         client.commands.get('Reactions').execute(message);
         client.commands.get('JojosReferences').execute(message);
-        client.commands.get('League').execute(message);
+        //client.commands.get('League').execute(message);
 
     }
 

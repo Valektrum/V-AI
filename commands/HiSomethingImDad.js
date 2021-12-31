@@ -10,8 +10,11 @@ module.exports = {
                 message.reply("Nice try");
             }
             else {
-                var name = message.content.substring(index + 3, message.content.length);
-                message.channel.send("Hi" + name + ", I'm dad.");
+                let rand = (Math.random() * 100);
+                if(rand > 94){
+                    var name = message.content.substring(index + 3, message.content.length);
+                    message.channel.send("Hi" + name + ", I'm dad.");
+                }
             }
 
         }
