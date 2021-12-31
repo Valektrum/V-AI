@@ -6,6 +6,8 @@ const cron = require('cron');
 
 const token = process.env.DISCORD_TOKEN;
 const key = process.env.LEAGUE_API_KEY;
+const questionsFile = process.env.QUESTIONS_FILE_PATH || './questions.json';
+
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'))
@@ -30,7 +32,7 @@ client.once('ready', () => {
 
         let scheduledMessage = new cron.CronJob('00 00 12 * * *', () => {
 
-            let values = client.commands.get('QOTDget').get();
+            let values = client.commands.get('QOTDget').get(questionsFile);
                   
             let questionnb;
             if(values[1] <= 1){
@@ -84,11 +86,11 @@ client.on('message', message => {
         message.channel.send(xav);
     }
     else if (lowerCaseMessage.search("-qotdadd") != -1) {
-        client.commands.get('QOTDadd').add(message);
+        client.commands.get('QOTDadd').add(message, questionsFile);
 
     }
     else if (lowerCaseMessage.search("-qotdpost") != -1) {
-        let values = client.commands.get('QOTDget').get();
+        let values = client.commands.get('QOTDget').get(questionsFile);
                   
         let questionnb;
         if(values[1] <= 1){
@@ -133,14 +135,16 @@ client.on('message', message => {
     }
     else if (lowerCaseMessage.search("i'm") != -1) {
         client.commands.get('HiSomethingImDad').execute(message);
+    } else if (lowerCaseMessage.search("-summoner") != -1) {
+        client.commands.get('League').execute(message, key);
     }
     else {
         client.commands.get('Reactions').execute(message);
         client.commands.get('JojosReferences').execute(message);
-        client.commands.get('League').execute(message, key);
 
     }
     } catch (error) {
+        console.log(error);
         let rand = Math.random() * 10
         if(rand > 5){
             message.channel.send("Hmm... I don't quite understand that.");

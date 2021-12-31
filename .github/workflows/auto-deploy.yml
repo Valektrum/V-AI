@@ -1,0 +1,25 @@
+name: Deploy on dokku
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cloning repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Push to Dokku
+        uses: dokku/github-action@master
+        with:
+          branch: 'main'
+          git_remote_url: 'ssh://dokku@cyancloud.olaren.dev:22/v-ai'
+          ssh_host_key: ${{ secrets.DOKKU_SSH_HOST_KEY }}
+          ssh_private_key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
