@@ -66,7 +66,7 @@ module.exports = {
 
 
                     const embed = new Discord.MessageEmbed()
-                      .setColor('#0099ff')
+                      .setColor('#c73954')
                       .setTitle(summoner.name)
                       .setThumbnail(`https://ddragon.leagueoflegends.com/cdn/11.9.1/img/profileicon/${summoner.profileIconId}.png`)
                       .setDescription(description)
