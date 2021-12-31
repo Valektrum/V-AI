@@ -9,7 +9,8 @@ module.exports = {
             .setTitle('Here is all the currently available commands!')
             .setAuthor('V-AI version alpha')
             .addFields(
-                { name: "-summoner [name]", value: 'Search for a league of legend account!' },
+                //{ name: "-summoner [name]", value: 'Search for a league of legend account!' },
+                { name: "Question of the Day!", value: "I will send a question everyday at 12:00!" },
                 { name: "-coin", value: 'Flip a coin!' },
                 { name: "-number [min] [max]", value: "Want me to give you a number? Type this command followed by your desired interval (ex: -number 2 4). If you do not give me an interval, I'll give you a number between 1 and 10! ^^'" },
                 { name: "-headpat", value: "Show a random (but handpicked) headpat picture" },
@@ -19,7 +20,7 @@ module.exports = {
                 { name: `I'm [text]`, value: `Dad joke "Hi [something], I'm dad"` },
                 { name: "Various references", value: "Try and find them!" },
                 { name: "Cool reactions", value: "I'll automatically react if I read something special." },
-                { name: "Self-awareness", value: "I can be your waifu if you want... jk lol loser.. unless? >///<" }
+                { name: "Self-awareness", value: "I can be your waifu if you want... jk lol loser.. unless? >///<" },
 
             )
 
