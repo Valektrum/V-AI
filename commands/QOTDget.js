@@ -1,9 +1,9 @@
 module.exports = {
   name: 'QOTDget',
   description: 'get a question of the day',
-  get() {
+  get(filePath) {
     const fs = require("fs");
-    let rawdata = fs.readFileSync('./questions.json');
+    let rawdata = fs.readFileSync(filePath);
     let questions = JSON.parse(rawdata);
 
     if(questions.length > 0){
@@ -11,7 +11,7 @@ module.exports = {
       let question = questions.splice(nb, 1);
 
       let data = JSON.stringify(questions);
-      fs.writeFileSync('./questions.json', data);
+      fs.writeFileSync(filePath, data);
 
       console.log("Sending question: " + question);
       return [question, questions.length];
