@@ -10,6 +10,7 @@ module.exports = {
 
     questions.push(question);
 
+    message.channel.send("Added question: " + question);
     let data = JSON.stringify(questions);
     fs.writeFileSync(filePath, data);
 

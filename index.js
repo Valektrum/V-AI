@@ -85,27 +85,41 @@ client.on('message', message => {
         xav = "<@!188315934719475712>";
         message.channel.send(xav);
     }
-    else if (lowerCaseMessage.search("-qotdadd") != -1) {
-        client.commands.get('QOTDadd').add(message, questionsFile);
-
-    }
-    else if (lowerCaseMessage.search("-qotdpost") != -1) {
-        let values = client.commands.get('QOTDget').get(questionsFile);
-                  
-        let questionnb;
-        if(values[1] <= 1){
-            questionnb = "question";
-        }else{
-            questionnb = "questions";
+    else if(message.author.id == 188293233313316864){
+        if (lowerCaseMessage.search("-post") != -1) {
+            client.commands.get('post').post(message, mainChannel);
+    
         }
-
-        const embed = new Discord.MessageEmbed()
-                  .setColor('#c73954')
-                  .setTitle("❓❔ Question of the Day ❔❓")
-                  .setDescription(values[0])
-                  .setFooter(values[1] + ' ' + questionnb + ' left');
-
-        mainChannel.send(embed);
+        else if (lowerCaseMessage.search("-qotdgetall") != -1) {
+            client.commands.get('QOTDgetAll').get(message, questionsFile);
+    
+        }
+        else if (lowerCaseMessage.search("-qotdmpost") != -1) {
+            client.commands.get('QOTDpost').post(message, mainChannel);
+    
+        }
+        else if (lowerCaseMessage.search("-qotdadd") != -1) {
+            client.commands.get('QOTDadd').add(message, questionsFile);
+    
+        }
+        else if (lowerCaseMessage.search("-qotdpost") != -1) {
+            let values = client.commands.get('QOTDget').get(questionsFile);
+                      
+            let questionnb;
+            if(values[1] <= 1){
+                questionnb = "question";
+            }else{
+                questionnb = "questions";
+            }
+    
+            const embed = new Discord.MessageEmbed()
+                      .setColor('#c73954')
+                      .setTitle("❓❔ Question of the Day ❔❓")
+                      .setDescription(values[0])
+                      .setFooter(values[1] + ' ' + questionnb + ' left');
+    
+            mainChannel.send(embed);
+        }
     }
     else if (lowerCaseMessage == "-coin") {
         client.commands.get('FlipCoin').execute(message);
