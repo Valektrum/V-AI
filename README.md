@@ -5,7 +5,7 @@ This way, I can have total control over my bot, add features along the way and h
 
 # Some of the things Violet can do are:
 
-- Flipping a coin (heads or tails)
+- Flipping a coin (heads or tails)  
   ![Flipping a coin](./Images/coin.png "Flip a coin")
 - Give a random number
 - Send gifs and pictures
@@ -22,6 +22,6 @@ This way, I can have total control over my bot, add features along the way and h
     ![QOTD](./Images/poll.png "QOTD")
 
 - React to certain keywords
-- Get a league of legends profil (WIP)
+- Get a league of legends profil (WIP)  
   ![Get a league of legends profil](./Images/summoner.png "Get a league of legends profil")
 - ....and some other cool interactions!
