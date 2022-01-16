@@ -122,14 +122,10 @@ client.on('message', message => {
         lowerCaseMessage.search("<@!735627552055492648>") != -1) {
         client.commands.get('SelfAware').execute(message);
     }
-    else if (lowerCaseMessage.search("i'm") != -1) {
-        client.commands.get('HiSomethingImDad').execute(message);
-    } else if (lowerCaseMessage.search("-summoner") != -1) {
+    else if (lowerCaseMessage.search("-summoner") != -1) {
         client.commands.get('League').execute(message, key);
     }
     else {
-        client.commands.get('Reactions').execute(message);
-        client.commands.get('JojosReferences').execute(message);
         if(message.author.id == 188293233313316864){
             if (lowerCaseMessage.search("-post") != -1) {
                 client.commands.get('post').post(message, mainChannel);
@@ -166,6 +162,11 @@ client.on('message', message => {
                 mainChannel.send(embed);
             }
         }
+        client.commands.get('Reactions').execute(message);
+        client.commands.get('JojosReferences').execute(message);
+        if (lowerCaseMessage.search("i'm") != -1) {
+            client.commands.get('HiSomethingImDad').execute(message);
+        } 
 
     }
     } catch (error) {
