@@ -19,7 +19,7 @@ This way, I can have total control over my bot, add features along the way and h
   - Post a question daily at 12:00
   - Post a question manually
   - Post a new question manually  
-    ![QOTD](./Images/poll.png "QOTD")
+    ![QOTD](./Images/qotd.png "QOTD")
 
 - React to certain keywords
 - Get a league of legends profil (WIP)  
