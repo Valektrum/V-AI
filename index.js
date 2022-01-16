@@ -107,6 +107,17 @@ client.on('message', message => {
     else if (lowerCaseMessage.search("-poll") != -1) {
         client.commands.get('Poll').execute(message);
     }
+    else if (lowerCaseMessage.search("-music") != -1) {
+        client.commands.get('Music_help').execute(message);
+    }
+    else if (lowerCaseMessage.search("-play") != -1 ||
+     lowerCaseMessage.search("-skip") != -1||
+     lowerCaseMessage.search("-stop") != -1 ||
+     lowerCaseMessage.search("-search") != -1 || 
+     lowerCaseMessage.search("-queue") != -1) {
+        const args = message.content.split(/ +/);
+        client.commands.get('Music').execute(message, args, args[0]);
+    }
     else if (lowerCaseMessage.search("violet") != -1 ||
         lowerCaseMessage.search("<@!735627552055492648>") != -1) {
         client.commands.get('SelfAware').execute(message);
