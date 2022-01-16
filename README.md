@@ -1,6 +1,6 @@
 # V-AI
 
-V-AI, also known as Violet, is a custom build discord bot for my own private discord server.  
+V-AI, also known as Violet, is a custom built discord bot for my own private discord server.  
 This way, I can have total control over my bot, add features along the way and have fun!
 
 # Some of the things Violet can do:
