@@ -1,18 +1,18 @@
 # V-AI
 
-V-AI, also knows as Violet, is a discord bot custom built for my own private discord server.  
+V-AI, also known as Violet, is a custom build discord bot for my own private discord server.  
 This way, I can have total control over my bot, add features along the way and have fun!
 
-# Some of the things Violet can do are:
+# Some of the things Violet can do:
 
-- Flipping a coin (heads or tails)  
+- Flip a coin (heads or tails)  
   ![Flipping a coin](./Images/coin.png "Flip a coin")
 - Give a random number
 - Send gifs and pictures
 - Link specific youtube videos
 - Make polls  
   ![Making polls](./Images/poll.png "Making polls")
-- Ask the question of the day (Add question, get questions, post question daily/manually)
+- Ask the question of the day
 
   - Add question
   - Get the list of questions
