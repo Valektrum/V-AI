@@ -6,22 +6,22 @@ This way, I can have total control over my bot, add features along the way and h
 # Some of the things Violet can do are:
 
 - Flipping a coin (heads or tails)
-  ![Flipping a coin](/images/coin.png "Flip a coin")
+  ![Flipping a coin](./Images/coin.png "Flip a coin")
 - Give a random number
 - Send gifs and pictures
 - Link specific youtube videos
-- Make polls
-  ![Making polls](/images/poll.png "Making polls")
+- Make polls  
+  ![Making polls](./Images/poll.png "Making polls")
 - Ask the question of the day (Add question, get questions, post question daily/manually)
 
   - Add question
   - Get the list of questions
   - Post a question daily at 12:00
   - Post a question manually
-  - Post a new question manually
-    ![QOTD](/images/poll.png "QOTD")
+  - Post a new question manually  
+    ![QOTD](./Images/poll.png "QOTD")
 
 - React to certain keywords
 - Get a league of legends profil (WIP)
-  ![Get a league of legends profil](/images/summoner.png "Get a league of legends profil")
+  ![Get a league of legends profil](./Images/summoner.png "Get a league of legends profil")
 - ....and some other cool interactions!
