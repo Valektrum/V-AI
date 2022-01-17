@@ -115,6 +115,7 @@ client.on('message', message => {
      lowerCaseMessage.search("-stop") != -1 ||
      lowerCaseMessage.search("-search") != -1 || 
      lowerCaseMessage.search("-queue") != -1) {
+         return;
         const args = message.content.split(/ +/);
         client.commands.get('Music').execute(message, args, args[0]);
     }
