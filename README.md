@@ -5,6 +5,15 @@ This way, I can have total control over my bot, add features along the way and h
 
 # Some of the things Violet can do:
 
+- Play music
+  - Play a song by a url or query
+    ![Play a song](./Images/play.png "Play a song")
+  - Skip the current song
+  - Stop playing
+  - Search for songs using a query
+  - Show the server's queue
+    ![Server's queue](./Images/queue.png "Server's queue")
+  - (WIP) Loop the current song
 - Flip a coin (heads or tails)  
   ![Flipping a coin](./Images/coin.png "Flip a coin")
 - Give a random number
@@ -22,6 +31,6 @@ This way, I can have total control over my bot, add features along the way and h
     ![QOTD](./Images/qotd.png "QOTD")
 
 - React to certain keywords
-- Get a league of legends profil (WIP)  
+- (WIP) Get a league of legends profil
   ![Get a league of legends profil](./Images/summoner.png "Get a league of legends profil")
 - ....and some other cool interactions!
