@@ -178,7 +178,8 @@ const get_queue = (message, server_queue, Discord) => {
         .setColor('#c73954')
         .setTitle('Here is the current queue!')
 
-    for(var i = 1; i <= server_queue.songs.length; i++){
+    embed.addField(`🎵 **NOW PLAYING**: ${server_queue.songs[0].title}` , server_queue.songs[0].url + "\n");
+    for(var i = 2; i <= server_queue.songs.length; i++){
         var song = server_queue.songs[i-1]
         embed.addField(`${i}: ${song.title}` , song.url + "\n");
     }
