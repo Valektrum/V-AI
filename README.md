@@ -1,12 +1,12 @@
 # V-AI
 
-V-AI, also known as Violet, is a custom built discord bot for my own private discord server.  
+V-AI, also known as Violet, is a custom-built discord bot for my own private discord server.  
 This way, I can have total control over my bot, add features along the way and have fun!
 
 # Some of the things Violet can do:
 
 - Play music
-  - Play a song by a url or query
+  - Play a song by a URL or query
     ![Play a song](./Images/play.png "Play a song")
   - Skip the current song
   - Stop playing
@@ -18,7 +18,7 @@ This way, I can have total control over my bot, add features along the way and h
   ![Flipping a coin](./Images/coin.png "Flip a coin")
 - Give a random number
 - Send gifs and pictures
-- Link specific youtube videos
+- Link specific YouTube videos
 - Make polls  
   ![Making polls](./Images/poll.png "Making polls")
 - Ask the question of the day
@@ -31,6 +31,6 @@ This way, I can have total control over my bot, add features along the way and h
     ![QOTD](./Images/qotd.png "QOTD")
 
 - React to certain keywords
-- (WIP) Get a league of legends profil
-  ![Get a league of legends profil](./Images/summoner.png "Get a league of legends profil")
+- (WIP) Get a league of legends profile
+  ![Get a league of legends profile](./Images/summoner.png "Get a league of legends profile")
 - ....and some other cool interactions!
