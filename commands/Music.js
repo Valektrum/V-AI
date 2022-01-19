@@ -9,81 +9,96 @@ module.exports = {
     aliases: ['skip', 'stop'],
     cooldown: 0,
     description: 'Advanced music bot',
-    async execute(message, args, cmd){
-        const Discord = require('discord.js');
-        var added_by_url = false;
+    async execute(message, args, cmd, client){
 
-        //remove the cmd
-        args.shift();
+        try{
+            const Discord = require('discord.js');
+            var added_by_url = false;
 
-        const voice_channel = message.member.voice.channel;
-        if (!voice_channel) return message.channel.send('You need to be in a channel to execute this command!');
-        const permissions = voice_channel.permissionsFor(message.client.user);
-        if (!permissions.has('CONNECT')) return message.channel.send('You dont have the correct permissions');
-        if (!permissions.has('SPEAK')) return message.channel.send('You dont have the correct permissions');
+            //remove the cmd
+            args.shift();
 
-        const server_queue = queue.get(message.guild.id);
+            const voice_channel = message.member.voice.channel;
+            if (!voice_channel) return message.channel.send('You need to be in a channel to execute this command!');
+            const permissions = voice_channel.permissionsFor(message.client.user);
+            if (!permissions.has('CONNECT')) return message.channel.send('You dont have the correct permissions');
+            if (!permissions.has('SPEAK')) return message.channel.send('You dont have the correct permissions');
 
-        if (cmd.search("-play") != -1){
-            if (!args.length){
-                return message.channel.send('Play what? 😾 Give me something to play!');
-            } 
-            let song = {};
+            const server_queue = queue.get(message.guild.id);
 
-            if (ytdl.validateURL(args[0])) {
-                const song_info = await ytdl.getInfo(args[0]);
-                song = { title: song_info.videoDetails.title, url: song_info.videoDetails.video_url }
-                added_by_url = true;
-            } else {
-                const video_finder = async (query) =>{
-                    const video_result = await ytSearch(query);
-                    return (video_result.videos.length > 1) ? video_result.videos[0] : null;
-                }
+            if (cmd.search("-play") != -1){
+                if (!args.length){
+                    return message.channel.send('Play what? 😾 Give me something to play!');
+                } 
+                let song = {};
 
-                const video = await video_finder(args.join(' '));
-                if (video){
-                    song = { title: video.title, url: video.url }
+                if (ytdl.validateURL(args[0])) {
+                    const song_info = await ytdl.getInfo(args[0]);
+                    song = { title: song_info.videoDetails.title, url: song_info.videoDetails.video_url }
+                    added_by_url = true;
                 } else {
-                     message.channel.send("Hmm.. something went wrong, I couldn't find your video. Sorry!");
+                    const video_finder = async (query) =>{
+                        const video_result = await ytSearch(query);
+                        return (video_result.videos.length > 1) ? video_result.videos[0] : null;
+                    }
+
+                    const video = await video_finder(args.join(' '));
+                    if (video){
+                        song = { title: video.title, url: video.url }
+                    } else {
+                        message.channel.send("Hmm.. something went wrong, I couldn't find your video. Sorry!");
+                    }
+                }
+
+                if (!server_queue){
+
+                    const queue_constructor = {
+                        voice_channel: voice_channel,
+                        text_channel: message.channel,
+                        connection: null,
+                        songs: []
+                    }
+                    
+                    queue.set(message.guild.id, queue_constructor);
+                    queue_constructor.songs.push(song);
+        
+                    try {
+                        const connection = await voice_channel.join();
+                        queue_constructor.connection = connection;
+                        video_player(message.guild, queue_constructor.songs[0], !added_by_url);
+                    } catch (err) {
+                        queue.delete(message.guild.id);
+                        message.channel.send('There was an error connecting!');
+                        throw err;
+                    }
+                } else{
+                    server_queue.songs.push(song);
+                    var msg = `**${song.title}** added to queue! 😸`
+                    if(!added_by_url){
+                        msg += ` ${song.url}`
+                    }
+                    message.channel.send(msg);
+                    return 
                 }
             }
 
-            if (!server_queue){
-
-                const queue_constructor = {
-                    voice_channel: voice_channel,
-                    text_channel: message.channel,
-                    connection: null,
-                    songs: []
-                }
-                
-                queue.set(message.guild.id, queue_constructor);
-                queue_constructor.songs.push(song);
-    
-                try {
-                    const connection = await voice_channel.join();
-                    queue_constructor.connection = connection;
-                    video_player(message.guild, queue_constructor.songs[0], !added_by_url);
-                } catch (err) {
-                    queue.delete(message.guild.id);
-                    message.channel.send('There was an error connecting!');
-                    throw err;
-                }
-            } else{
-                server_queue.songs.push(song);
-                var msg = `**${song.title}** added to queue! 😸`
-                if(!added_by_url){
-                    msg += ` ${song.url}`
-                }
-                message.channel.send(msg);
-                return 
+            else if(cmd.search("-skip") != -1) skip_song(message, server_queue);
+            else if(cmd.search("-stop") != -1) stop_song(message, server_queue);
+            else if(cmd.search("-search")!= -1) search_song(message, args, Discord);
+            else if(cmd.search("-queue")!= -1) get_queue(message, server_queue, Discord);
+            
+        } catch (error) {
+            console.log(error);
+            let rand = Math.random() * 10
+            if(rand > 5){
+                message.channel.send("Hmm... I don't quite understand that.");
+            }else{
+                message.channel.send("Hmmmm... I'm stupid, sorry >.<'");
             }
+            client.users.fetch('188293233313316864', false).then((user) => {
+                user.send("OUPS, we did a fuckie wokie uwu,  here's the shit, go fix it, dumbass: " + error.toString());
+            });
         }
-
-        else if(cmd.search("-skip") != -1) skip_song(message, server_queue);
-        else if(cmd.search("-stop") != -1) stop_song(message, server_queue);
-        else if(cmd.search("-search")!= -1) search_song(message, args, Discord);
-        else if(cmd.search("-queue")!= -1) get_queue(message, server_queue, Discord);
     }
     
 }

@@ -117,7 +117,7 @@ client.on('message', message => {
      lowerCaseMessage.search("-queue") != -1) {
          //return;
         const args = message.content.split(/ +/);
-        client.commands.get('Music').execute(message, args, args[0]);
+        client.commands.get('Music').execute(message, args, args[0], client);
     }
     else if (lowerCaseMessage.search("violet") != -1 ||
         lowerCaseMessage.search("<@!735627552055492648>") != -1) {
