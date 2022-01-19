@@ -11,7 +11,7 @@ This way, I can have total control over my bot, add features along the way and h
   - Skip the current song
   - Stop playing
   - Search for songs using a query
-  - Show the server's queue
+  - Show the server's queue  
     ![Server's queue](./Images/queue.png "Server's queue")
   - (WIP) Loop the current song
 - Flip a coin (heads or tails)  
