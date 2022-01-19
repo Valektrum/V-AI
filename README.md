@@ -31,6 +31,6 @@ This way, I can have total control over my bot, add features along the way and h
     ![QOTD](./Images/qotd.png "QOTD")
 
 - React to certain keywords
-- (WIP) Get a league of legends profile
+- (WIP) Get a league of legends profile  
   ![Get a league of legends profile](./Images/summoner.png "Get a league of legends profile")
 - ....and some other cool interactions!
