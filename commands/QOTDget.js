@@ -16,7 +16,7 @@ module.exports = {
       console.log("Sending question: " + question);
       return [question, questions.length];
     }else{
-      return "..I don't have any more questions! Let me think of new ones and I'll make sure to send one tomorrow! Sorry >.<"
+      return "It's noon.. and I'm all out of questions! Let me think of new ones, or send some to my secretary, and I'll make sure to send one tomorrow! Sorry >.<"
     }
     
 
