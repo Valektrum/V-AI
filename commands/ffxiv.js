@@ -55,6 +55,10 @@ module.exports = {
                     .setTitle("Commands about the critically aclaimmed MMORPG Final Fantasy XIV")
                     .addFields([
                         {
+                            name: "-ffxiv [character_name]",
+                            value: "Show a picture of your character"
+                        },
+                        {
                             name: "-ffxiv level [character_name]",
                             value: "Shows the levels of your character",
                         },
@@ -176,7 +180,7 @@ module.exports = {
                                 .addFields(fields)
                                 .setImage(showLevels || showProgress ? null : lodestoneCharacter.portrait)
                                 .setThumbnail(showLevels || showProgress ? lodestoneCharacter.avatar : null)
-                                .setFooter(showProgress ? "\*You must have your acheivements set to public on your lodestone profile\n\**Must be entered manually on the FFXIVCollect website." : "")
+                                .setFooter(showProgress ? "\*You must have your achievements set to public on your lodestone profile\n\**Must be entered manually on the FFXIVCollect website." : "")
 
                             msg.channel.send(embed)
                         }).catch(() => { msg.channel.send("This game is too hawd for me i'm having twouble figuwing stuff out >.<'") })
