@@ -34,8 +34,8 @@ This way, I can have total control over my bot, add features along the way and h
 - Get a league of legends profile  
   ![Get a league of legends profile](./Images/summoner.png "Get a league of legends profile")
 - Get information about FFXIV characters
-  - Levels
-    ![Show levels](./Images/levels.png)
-  - Progress of the game
-    ![Show progress](./Images/progress.png)
+  - Levels 
+    ![Show levels](./Images/levels.png "Show levels")
+  - Progress of the game 
+    ![Show progress](./Images/progress.png "show progress")
 - ....and some other cool interactions!
