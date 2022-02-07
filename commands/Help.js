@@ -10,6 +10,7 @@ module.exports = {
             .addFields(
                 { name: "-music", value: "Enter this command to see the music-related commands!" },
                 { name: "-summoner [name]", value: 'Search for a league of legend account!' },
+                { name: "-ffxiv", value: "enter this command to see ffxiv-releated commands!" },
                 { name: "-coin", value: 'Flip a coin!' },
                 { name: "-number [min] [max]", value: "Want me to give you a number? Type this command followed by your desired interval (ex: -number 2 4). If you do not give me an interval, I'll give you a number between 1 and 10! ^^'" },
                 { name: "-headpat", value: "Show a random (but handpicked) headpat picture" },
