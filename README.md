@@ -33,4 +33,11 @@ This way, I can have total control over my bot, add features along the way and h
 - React to certain keywords
 - Get a league of legends profile  
   ![Get a league of legends profile](./Images/summoner.png "Get a league of legends profile")
+- Get information about FFXIV characters
+  - Show the levels of a character
+  
+    ![Show levels](./Images/levels.png "Show levels")
+  - Show the progress of a character
+  
+    ![Show progress](./Images/progress.png "Show progress")
 - ....and some other cool interactions!

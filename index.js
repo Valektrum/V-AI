@@ -6,6 +6,7 @@ const cron = require('cron');
 
 const token = process.env.DISCORD_TOKEN;
 const key = process.env.LEAGUE_API_KEY;
+const xivApiKey = process.env.XIV_API_KEY;
 const questionsFile = process.env.QUESTIONS_FILE_PATH || './questions.json';
 
 client.commands = new Discord.Collection();
@@ -118,6 +119,9 @@ client.on('message', message => {
          //return;
         const args = message.content.split(/ +/);
         client.commands.get('Music').execute(message, args, args[0], client);
+    }
+    else if (lowerCaseMessage.search("-ffxiv") != -1) {
+        client.commands.get("ffxiv").execute(message, xivApiKey)
     }
     else if (lowerCaseMessage.search("violet") != -1 ||
         lowerCaseMessage.search("<@!735627552055492648>") != -1) {
