@@ -165,6 +165,7 @@ const skip_song = (message, server_queue) => {
     return message.channel.send(`I can't skip **nothing**... 🤦‍♀️`);
   }
   server_queue.connection.dispatcher.end();
+  //"Cannot read property end of null"
 };
 
 const stop_song = (message, server_queue) => {
