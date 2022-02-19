@@ -103,6 +103,7 @@ module.exports = {
       else if (cmd.search("-queue") != -1)
         get_queue(message, server_queue, Discord);
     } catch (error) {
+      queue = new Map();
       console.log(error);
       let rand = Math.random() * 10;
       if (rand > 5) {
