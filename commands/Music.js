@@ -166,8 +166,11 @@ const skip_song = (message, server_queue) => {
   if (!server_queue) {
     return message.channel.send(`I can't skip **nothing**... 🤦‍♀️`);
   }
-  server_queue.connection.dispatcher.end();
-  //"Cannot read property end of null"
+  try{
+    server_queue.connection.dispatcher.end();
+  }catch{
+    queue = new Map();
+  }
 };
 
 const stop_song = (message, server_queue) => {
@@ -182,7 +185,11 @@ const stop_song = (message, server_queue) => {
   }
   server_queue.songs = [];
   console.log("a");
-  server_queue.connection.dispatcher.end();
+  try{
+    server_queue.connection.dispatcher.end();
+  }catch{
+    queue = new Map();
+  }
 };
 
 const search_song = async (message, args, Discord) => {
