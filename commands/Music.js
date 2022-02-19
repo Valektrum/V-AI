@@ -99,6 +99,7 @@ module.exports = {
       } else if (cmd.search("-skip") != -1) skip_song(message, server_queue);
       else if (cmd.search("-stop") != -1) stop_song(message, server_queue);
       else if (cmd.search("-search") != -1) search_song(message, args, Discord);
+      else if (cmd.search("-musicDebug") != -1) queue = new Map();
       else if (cmd.search("-queue") != -1)
         get_queue(message, server_queue, Discord);
     } catch (error) {
