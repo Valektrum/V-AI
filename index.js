@@ -108,17 +108,18 @@ client.on('message', message => {
     else if (lowerCaseMessage.search("-poll") != -1) {
         client.commands.get('Poll').execute(message);
     }
-    else if (lowerCaseMessage.search("-music") != -1) {
-        client.commands.get('Music_help').execute(message);
-    }
     else if (lowerCaseMessage.search("-play") != -1 ||
      lowerCaseMessage.search("-skip") != -1||
      lowerCaseMessage.search("-stop") != -1 ||
      lowerCaseMessage.search("-search") != -1 || 
+     lowerCaseMessage.search("-musicDebug") != -1 ||
      lowerCaseMessage.search("-queue") != -1) {
          //return;
         const args = message.content.split(/ +/);
         client.commands.get('Music').execute(message, args, args[0], client);
+    }
+    else if (lowerCaseMessage.search("-music") != -1) {
+        client.commands.get('Music_help').execute(message);
     }
     else if (lowerCaseMessage.search("-ffxiv") != -1) {
         client.commands.get("ffxiv").execute(message, xivApiKey)
