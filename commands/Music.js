@@ -170,6 +170,7 @@ const skip_song = (message, server_queue) => {
     server_queue.connection.dispatcher.end();
   }catch{
     queue = new Map();
+    throw 'Something went wrong!';
   }
 };
 
@@ -189,6 +190,7 @@ const stop_song = (message, server_queue) => {
     server_queue.connection.dispatcher.end();
   }catch{
     queue = new Map();
+    throw 'Something went wrong!';
   }
 };
 
