@@ -31,7 +31,7 @@ client.once('ready', () => {
     .then(function(channel){
         mainChannel = channel;
 
-        let scheduledMessage = new cron.CronJob('00 00 17 * * *', () => {
+        let scheduledMessage = new cron.CronJob('00 00 12 * * *', () => {
 
             let values = client.commands.get('QOTDget').get(questionsFile);
                   
