@@ -18,6 +18,7 @@ module.exports = {
                 { name: "-poll [description], [option1], [option2], ...", value: "Create a poll. Be carefull with the syntax, I need the commas. If you do not give options, it will be a yes no poll." },
                 { name: "-pollFace description", value: "Create a poll, but with beautiful faces. owo" },
                 { name: "Question of the Day!", value: "I will send a question everyday at 12:00!" },
+                { name: "-qotdadd", value: "Add a question of the day." },
                 { name: "Various references", value: "Try and find them!" },
                 { name: "Cool reactions", value: "I'll automatically react if I read something special." },
                 { name: "Self-awareness", value: "I can be your waifu if you want... jk lol loser.. unless? >///<" },

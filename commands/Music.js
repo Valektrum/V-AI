@@ -1,7 +1,7 @@
 const ytdl = require("ytdl-core");
 const ytSearch = require("yt-search");
 
-const queue = new Map();
+var queue = new Map();
 
 //Big yoink https://www.youtube.com/watch?v=riyHsgI2IDs
 module.exports = {

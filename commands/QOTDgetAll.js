@@ -6,7 +6,10 @@ module.exports = {
     let rawdata = fs.readFileSync(filePath);
     let questions = JSON.parse(rawdata);
     
-    message.channel.send(questions.toString())
-
+    if(questions.length < 1){
+      message.channel.send("no more questions")
+    }else{
+      message.channel.send(questions.toString())
+    }
   }
 }

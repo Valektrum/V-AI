@@ -36,6 +36,12 @@ client.once('ready', () => {
             let values = client.commands.get('QOTDget').get(questionsFile);
                   
             let questionnb;
+
+            //is not array, no more questions
+            if(!Array.isArray(values)){
+              return;
+            }
+
             if(values[1] <= 1){
                 questionnb = "question";
             }else{
@@ -131,6 +137,9 @@ client.on('message', message => {
     else if (lowerCaseMessage.search("-summoner") != -1) {
         client.commands.get('League').execute(message, key);
     }
+    else if (lowerCaseMessage.search("-qotdadd") != -1) {
+        client.commands.get('QOTDadd').add(message, questionsFile);
+    }
     else {
         if(message.author.id == 188293233313316864){
             if (lowerCaseMessage.search("-post") != -1) {
@@ -145,13 +154,14 @@ client.on('message', message => {
                 client.commands.get('QOTDpost').post(message, mainChannel);
         
             }
-            else if (lowerCaseMessage.search("-qotdadd") != -1) {
-                client.commands.get('QOTDadd').add(message, questionsFile);
-        
-            }
-            else if (lowerCaseMessage.search("-qotdpost") != -1) {
+                        else if (lowerCaseMessage.search("-qotdpost") != -1) {
                 let values = client.commands.get('QOTDget').get(questionsFile);
-                          
+                
+                //is not array, no more questions
+                if(!Array.isArray(values)){
+                    return;
+                }
+
                 let questionnb;
                 if(values[1] <= 1){
                     questionnb = "question";
