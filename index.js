@@ -32,29 +32,37 @@ client.once('ready', () => {
         mainChannel = channel;
 
         let scheduledMessage = new cron.CronJob('00 00 12 * * *', () => {
-
-            let values = client.commands.get('QOTDget').get(questionsFile);
-                  
-            let questionnb;
-
-            //is not array, no more questions
-            if(!Array.isArray(values)){
-              return;
-            }
-
-            if(values[1] <= 1){
-                questionnb = "question";
-            }else{
-                questionnb = "questions";
-            }
-            
-            const embed = new Discord.MessageEmbed()
-                  .setColor('#c73954')
-                  .setTitle("❓❔ Question of the Day ❔❓")
-                  .setDescription(values[0])
-                  .setFooter(values[1] + ' ' + questionnb + ' left');
+            try{
+                let values = client.commands.get('QOTDget').get(questionsFile);
+                      
+                let questionnb;
     
-            mainChannel.send(embed);
+                //is not array, no more questions
+                if(!Array.isArray(values)){
+                  return;
+                }
+    
+                if(values[1] <= 1){
+                    questionnb = "question";
+                }else{
+                    questionnb = "questions";
+                }
+                
+                const embed = new Discord.MessageEmbed()
+                      .setColor('#c73954')
+                      .setTitle("❓❔ Question of the Day ❔❓")
+                      .setDescription(values[0])
+                      .setFooter(values[1] + ' ' + questionnb + ' left');
+        
+                mainChannel.send(embed);
+
+            }catch(error){
+                console.log(error);
+                client.users.fetch('188293233313316864', false).then((user) => {
+                user.send("OUPS, we did a fuckie wokie uwu,  here's the shit, go fix it, dumbass: " + error.toString());
+                });
+            }
+
         });
           
         scheduledMessage.start()
