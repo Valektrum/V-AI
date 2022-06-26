@@ -31,40 +31,10 @@ client.once('ready', () => {
     .then(function(channel){
         mainChannel = channel;
 
-        let scheduledMessage = new cron.CronJob('00 00 12 * * *', () => {
-            try{
-                let values = client.commands.get('QOTDget').get(questionsFile);
-                      
-                let questionnb;
-    
-                //is not array, no more questions
-                if(!Array.isArray(values)){
-                  return;
-                }
-    
-                if(values[1] <= 1){
-                    questionnb = "question";
-                }else{
-                    questionnb = "questions";
-                }
-                
-                const embed = new Discord.MessageEmbed()
-                      .setColor('#c73954')
-                      .setTitle("❓❔ Question of the Day ❔❓")
-                      .setDescription(values[0])
-                      .setFooter(values[1] + ' ' + questionnb + ' left');
-        
-                mainChannel.send(embed);
+        let scheduledMessage = new cron.CronJob('00 00 12 * * *', sendQuestion);
+        //Every 30 seconds for testing
+        //let scheduledMessage = new cron.CronJob('*/30 * * * * *', sendQuestion);
 
-            }catch(error){
-                console.log(error);
-                client.users.fetch('188293233313316864', false).then((user) => {
-                user.send("OUPS, we did a fuckie wokie uwu,  here's the shit, go fix it, dumbass: " + error.toString());
-                });
-            }
-
-        });
-          
         scheduledMessage.start()
     });
 
@@ -81,8 +51,7 @@ client.on('message', message => {
     //for debugging
     // message.channel.send(message.author.username);
 
-
-    if (lowerCaseMessage.search("-welcome") != -1) {
+    if (lowerCaseMessage.startsWith("-welcome")) {
         message.channel.send("Hello and welcome among the unsummoners!");
         message.channel.send("We hope you'll enjoy your time with us.");
         message.channel.send("If you have any question related to this server, please contact <@!" + client.users.cache.get("188293233313316864") + ">.");
@@ -96,95 +65,74 @@ client.on('message', message => {
         message.channel.send("owo");
     }
 
-    else if (message.content.toLowerCase().search("psps") != -1) {
+    else if (message.content.toLowerCase().search("pspsps") != -1) {
         xav = "<@!188315934719475712>";
         message.channel.send(xav);
     }
-    else if (lowerCaseMessage == "-coin") {
+    else if (lowerCaseMessage.startsWith("-coin")) {
         client.commands.get('FlipCoin').execute(message);
 
     }
-    else if (lowerCaseMessage.search("-number") != -1) {
+    else if (lowerCaseMessage.startsWith("-number")) {
         client.commands.get('Number').execute(message)
     }
-    else if (lowerCaseMessage == "-headpat") {
+    else if (lowerCaseMessage.startsWith("-headpat")) {
         client.commands.get('Headpat').execute(message);
     }
-    else if (lowerCaseMessage == "-help") {
+    else if (lowerCaseMessage.startsWith("-help")) {
         client.commands.get('Help').execute(message);
     }
-    else if (lowerCaseMessage == "-video") {
+    else if (lowerCaseMessage.startsWith("-video")) {
         client.commands.get('Video').execute(message);
     }
-    else if (lowerCaseMessage.search("-pollface") != -1) {
+    else if (lowerCaseMessage.startsWith("-pollface")) {
         client.commands.get('Face').execute(message);
     }
-    else if (lowerCaseMessage.search("-poll") != -1) {
+    else if (lowerCaseMessage.startsWith("-poll")) {
         client.commands.get('Poll').execute(message);
     }
-    else if (lowerCaseMessage.search("-play") != -1 ||
-     lowerCaseMessage.search("-skip") != -1||
-     lowerCaseMessage.search("-stop") != -1 ||
-     lowerCaseMessage.search("-search") != -1 || 
-     lowerCaseMessage.search("-musicDebug") != -1 ||
-     lowerCaseMessage.search("-queue") != -1) {
+    else if (lowerCaseMessage.startsWith("-play") ||
+     lowerCaseMessage.startsWith("-skip") ||
+     lowerCaseMessage.startsWith("-stop") ||
+     lowerCaseMessage.startsWith("-search") || 
+     lowerCaseMessage.startsWith("-musicDebug") ||
+     lowerCaseMessage.startsWith("-queue")) {
          //return;
         const args = message.content.split(/ +/);
         client.commands.get('Music').execute(message, args, args[0], client);
     }
-    else if (lowerCaseMessage.search("-music") != -1) {
+    else if (lowerCaseMessage.startsWith("-music")) {
         client.commands.get('Music_help').execute(message);
     }
-    else if (lowerCaseMessage.search("-ffxiv") != -1) {
+    else if (lowerCaseMessage.startsWith("-ffxiv")) {
         client.commands.get("ffxiv").execute(message, xivApiKey)
     }
     else if (lowerCaseMessage.search("violet") != -1 ||
         lowerCaseMessage.search("<@!735627552055492648>") != -1) {
         client.commands.get('SelfAware').execute(message);
     }
-    else if (lowerCaseMessage.search("-summoner") != -1) {
+    else if (lowerCaseMessage.startsWith("-summoner")) {
         client.commands.get('League').execute(message, key);
     }
-    else if (lowerCaseMessage.search("-qotdadd") != -1) {
+    else if (lowerCaseMessage.startsWith("-qotdadd")) {
         client.commands.get('QOTDadd').add(message, questionsFile);
     }
     else {
         if(message.author.id == 188293233313316864){
-            if (lowerCaseMessage.search("-post") != -1) {
+            if (lowerCaseMessage.startsWith("-post")) {
                 client.commands.get('post').post(message, mainChannel);
         
             }
-            else if (lowerCaseMessage.search("-qotdgetall") != -1) {
+            else if (lowerCaseMessage.startsWith("-qotdgetall")) {
                 client.commands.get('QOTDgetAll').get(message, questionsFile);
         
             }
-            else if (lowerCaseMessage.search("-qotdmpost") != -1) {
+            else if (lowerCaseMessage.startsWith("-qotdmpost")) {
                 client.commands.get('QOTDpost').post(message, mainChannel);
         
             }
-                        else if (lowerCaseMessage.search("-qotdpost") != -1) {
-                let values = client.commands.get('QOTDget').get(questionsFile);
-                
-                //is not array, no more questions
-                if(!Array.isArray(values)){
-                    return;
-                }
-
-                let questionnb;
-                if(values[1] <= 1){
-                    questionnb = "question";
-                }else{
-                    questionnb = "questions";
-                }
-        
-                const embed = new Discord.MessageEmbed()
-                          .setColor('#c73954')
-                          .setTitle("❓❔ Question of the Day ❔❓")
-                          .setDescription(values[0])
-                          .setFooter(values[1] + ' ' + questionnb + ' left');
-        
-                mainChannel.send(embed);
-            }
+            else if (lowerCaseMessage.startsWith("-qotdpost"))
+                sendQuestion();
         }
         client.commands.get('Reactions').execute(message);
         client.commands.get('JojosReferences').execute(message);
@@ -210,3 +158,35 @@ client.on('message', message => {
 })
 
 client.login(token);
+
+function sendQuestion(){
+    try{
+        let values = client.commands.get('QOTDget').get(questionsFile);
+              
+        let questionnb;
+
+        //No more questions
+        if(!values)
+          return;
+
+        if(values[1] <= 1){
+            questionnb = "question";
+        }else{
+            questionnb = "questions";
+        }
+        
+        const embed = new Discord.MessageEmbed()
+              .setColor('#c73954')
+              .setTitle("❓❔ Question of the Day ❔❓")
+              .setDescription(values[0])
+              .setFooter(values[1] + ' ' + questionnb + ' left');
+
+        mainChannel.send(embed);
+
+    }catch(error){
+        console.log(error);
+        client.users.fetch('188293233313316864', false).then((user) => {
+        user.send("OUPS, we did a fuckie wokie uwu,  here's the shit, go fix it, dumbass: " + error.toString());
+        });
+    }
+}
